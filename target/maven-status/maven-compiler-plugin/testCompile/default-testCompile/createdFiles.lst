@@ -1,0 +1,3 @@
+com\skilltracker\SkillTrackerApplicationTests.class
+com\skilltracker\controller\SkillTrackerControllerTest.class
+com\skilltracker\serviceImpl\SkillTrackerServiceImplTest.class

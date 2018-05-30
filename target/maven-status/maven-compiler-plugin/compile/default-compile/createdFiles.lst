@@ -1,0 +1,12 @@
+com\skilltracker\repository\AssociateRepository.class
+com\skilltracker\repository\SkillsRepository.class
+com\skilltracker\SkillTrackerApplication.class
+com\skilltracker\service\SkillTrackerService.class
+com\skilltracker\controller\SkillTrackerController.class
+com\skilltracker\serviceImpl\SkillTrackerServiceImpl.class
+com\skilltracker\vo\AssociateVO.class
+com\skilltracker\vo\SkillVO.class
+com\skilltracker\model\AssociateSkills.class
+com\skilltracker\model\Skills.class
+com\skilltracker\repository\AssociateSkillsRepository.class
+com\skilltracker\model\Associate.class
