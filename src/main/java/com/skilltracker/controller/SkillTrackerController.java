@@ -30,7 +30,7 @@ import com.skilltracker.vo.SkillVO;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 /**
  * Use the below mapping when you are running this spring boot application as
  * jar.

@@ -12,6 +12,8 @@ import java.util.Optional;
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +45,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	private SkillsRepository skillsRepository;
 
 	@Override
+	@Cacheable("skills")
 	public List<SkillVO> viewAllSkills() {
 		List<SkillVO> skillsList = new ArrayList<SkillVO>();
 		List<Skills> skills = (List<Skills>) skillsRepository.findAll();
@@ -59,6 +62,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="skills")
 	public List<SkillVO> addSkill(SkillVO skillVO) {
 		Skills skill = new Skills();
 		if (skillVO != null && !StringUtils.isEmpty(skillVO.getSkillName())) {
@@ -73,6 +77,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="skills")
 	public List<SkillVO> editSkill(SkillVO skillVO) {
 		Optional<Skills> skill = skillsRepository.findById(skillVO.getSkillId());
 		if (skill.isPresent()) {
@@ -83,6 +88,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="skills")
 	public List<SkillVO> deleteSkill(String skillId) {
 		try {
 			skillsRepository.deleteById(Integer.parseInt(skillId));
@@ -93,6 +99,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@Cacheable("associates")
 	public List<AssociateVO> viewAllAssociates() {
 		List<AssociateVO> associateVOList = new ArrayList<AssociateVO>();
 		List<Associate> associateList = (List<Associate>) associateRepository.findAll();
@@ -142,6 +149,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="associates")
 	public String addAssociate(AssociateVO associateVO, MultipartFile file) {
 		Associate associate = new Associate();
 		Optional<Associate> associateEntity = associateRepository.findById(associateVO.getAssociateId());
@@ -229,6 +237,7 @@ public class SkillTrackerServiceImpl implements SkillTrackerService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="associates")
 	public List<AssociateVO> deleteAssociate(Integer associateId) {
 		associateRepository.deleteById(associateId);
 		return viewAllAssociates();
